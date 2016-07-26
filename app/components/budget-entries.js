@@ -2,6 +2,20 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   matrix: [],
+  accounts: [],
+
+  chunkSize: 30,
+
+  addChunkToAccounts: function() {
+    var allAccounts = this.get('allAccounts'),
+        accounts = this.get('accounts'),
+        chunkSize = this.get('chunkSize'),
+        accountsLength = accounts.length;
+    if(accountsLength < allAccounts.length) {
+      accounts.pushObjects(allAccounts.slice(accountsLength, accountsLength+chunkSize));
+      Ember.run.next(this, this.addChunkToAccounts);
+    }
+  }.on('init'),
 
   actions: {
     oninput(account, month, event) {

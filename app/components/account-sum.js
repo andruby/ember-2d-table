@@ -13,7 +13,7 @@ export default Ember.Component.extend({
       if(object.account === accountNumber) {
         sum = sum + parseInt(object.value);
       }
-    })
+    });
     if (sum === 0) {
       return "";
     } else {
