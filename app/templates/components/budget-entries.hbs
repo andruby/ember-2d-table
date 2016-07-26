@@ -1,0 +1,28 @@
+<table>
+  <thead>
+    <tr>
+      <th>
+        Account
+      </th>
+      {{#each months as |month|}}
+      <th>
+        {{month.name}}
+      </th>
+      {{/each}}
+    </tr>
+  </thead>
+  <tbody>
+    {{#each accounts as |account|}}
+    <tr>
+      <th>
+        {{account.number}}
+      </th>
+      {{#each months as |month|}}
+      <td>
+        <input oninput={{action "oninput" account month}}>
+      </td>
+      {{/each}}
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
