@@ -9,6 +9,9 @@
         {{month.name}}
       </th>
       {{/each}}
+      <th>
+        Sum
+      </th>
     </tr>
   </thead>
   <tbody>
@@ -22,6 +25,9 @@
         <input oninput={{action "oninput" account month}}>
       </td>
       {{/each}}
+      <td>
+        {{account-sum matrix=matrix account=account}}
+      </td>
     </tr>
     {{/each}}
   </tbody>

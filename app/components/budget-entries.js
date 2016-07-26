@@ -1,19 +1,19 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  matrix: {},
+  matrix: [],
 
   actions: {
     oninput(account, month, event) {
       var val = event.target.value;
       var matrix = this.get('matrix');
-      if(!matrix[month.name]) {
-        matrix[month.name] = {};
+      var previous = matrix.find(function(item) {
+        return (item.account === account.number && item.month === month.name);
+      });
+      if(previous) {
+        matrix.removeObject(previous);
       }
-      matrix[month.name][account.number] = val;
-      this.set('matrix', matrix);
-
-      console.log(matrix);
+      matrix.pushObject({account: account.number, month: month.name, value: val});
     }
   }
 });
